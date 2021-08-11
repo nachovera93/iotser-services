@@ -2,5 +2,5 @@ mongodata
 .env
 .ENV
 
-app
+iotser-app
 .log
