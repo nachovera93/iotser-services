@@ -1,38 +1,35 @@
 version: "3.3"
 
-#
-#volumes:
-#  vol-emqx-data:
-#    name: foo-emqx-data
-#  vol-emqx-etc:
-#    name: foo-emqx-etc
-#  vol-emqx-log:
-#    name: foo-emqx-log
-#
+volumes:
+  vol-emqx-data:
+    name: foo-emqx-data
+  vol-emqx-log:
+    name: foo-emqx-log
+
+
 services:
 
   node:
     container_name: node
     image: "node:14"
-    restart: always
     working_dir: /home/node/app
     volumes:
-      - ./mycode/index.js:/home/node/app/index.js
+      - ./app/:/home/node/app
     ports:
       - "3000:3000"
       - "3001:3001"
-      - "80: 3002"
+      - "80:3002"
 
     links:
       - emqx
-      - mongo 
-    command: sh -c "node index.js"
-    
+      - mongo
+
+    command: sh -c "npm run build && npm run start"
+    #command: sh -c "npm install"
 
   mongo:
     container_name: mongo
     image: mongo:4.4
-    restart: always
     environment:
       TZ: "${TZ}"
       MONGO_INITDB_ROOT_USERNAME: "${MONGO_USERNAME}"
@@ -45,7 +42,6 @@ services:
   emqx:
     container_name: emqx
     image: emqx/emqx:4.2.5
-    restart: always
     ports:
       - 18083:18083
       - 1883:1883
@@ -53,11 +49,11 @@ services:
       - 8083:8083
       - 8085:8081
 
-    #volumes:
-    #  - vol-emqx-data:/opt/emqx/data
-    #   - vol-emqx-etc:/opt/emqx/etc
-    #  - vol-emqx-log:/opt/emqx/log
-    #
+    volumes:
+      - vol-emqx-data:/opt/emqx/data
+      - vol-emqx-log:/opt/emqx/log
+
+    
 
     links:
       - mongo
@@ -113,7 +109,3 @@ services:
       EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_auth_mongo"
 
       EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
-  
-
-    
-           
