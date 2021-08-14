@@ -12,9 +12,9 @@ services:
   node:
     container_name: node
     image: "node:14"
-    working_dir: /home/node/iotser-app
+    working_dir: /home/node/app
     volumes:
-      - ./iotser-app/:/home/node/iotser-app
+      - ./app/:/home/node/app
     working_dir: /home/node/app
     volumes:
       - ./app/:/home/node/app
