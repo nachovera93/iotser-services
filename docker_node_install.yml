@@ -6,9 +6,15 @@ services:
   node:
     container_name: node
     image: "node:14"
+<<<<<<< HEAD
     working_dir: /home/node/iotser-app
     volumes:
       - ./iotser-app/:/home/node/iotser-app
+=======
+    working_dir: /home/node/app
+    volumes:
+      - ./app/:/home/node/app
+>>>>>>> c77bb0f8b2b302cade9e3273124343e97ff034a2
     ports:
       - "3000:3000"
       - "3001:3001"
