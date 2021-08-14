@@ -1,10 +1,10 @@
 version: "3.3"
 
-volumes:
-  vol-emqx-data:
-    name: foo-emqx-data
-  vol-emqx-log:
-    name: foo-emqx-log
+#volumes:
+#  vol-emqx-data:
+#    name: foo-emqx-data
+#  vol-emqx-log:
+#    name: foo-emqx-log
 
 
 services:
@@ -12,9 +12,6 @@ services:
   node:
     container_name: node
     image: "node:14"
-    working_dir: /home/node/app
-    volumes:
-      - ./app/:/home/node/app
     working_dir: /home/node/app
     volumes:
       - ./app/:/home/node/app
@@ -52,9 +49,9 @@ services:
       - 8083:8083
       - 8085:8081
 
-    volumes:
-      - vol-emqx-data:/opt/emqx/data
-      - vol-emqx-log:/opt/emqx/log
+#    volumes:
+#      - vol-emqx-data:/opt/emqx/data
+#      - vol-emqx-log:/opt/emqx/log
 
     
 
@@ -62,7 +59,7 @@ services:
       - mongo
 
     extra_hosts:
-      - "localhost:192.168.100.177"
+      - "localhost:18.230.177.45"
 
     environment:
       EMQX_NAME: ioticos-gl
