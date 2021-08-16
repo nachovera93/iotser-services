@@ -31,7 +31,7 @@ services:
       - 1883:1883
       - 8883:8883
       - 8083:8083
-      - 8085:8081
+      - 8081:8081
 
     #volumes:
     #  - vol-emqx-data:/opt/emqx/data
@@ -52,44 +52,44 @@ services:
       TZ: "${TZ}"
 
       # DEFAULT DASH PASS
-      EMQX_DASHBOARD__DEFAULT_USER__PASSWORD: "${EMQX_DEFAULT_USER_PASSWORD}"
+      EMQX_DASHBOARD__DEFAULT_USER__PASSWORD: "${EMQX_DEFAULT_USER_PASSWORD}"  #si
 
       # DEFAULT APP SECRET
-      EMQX_MANAGEMENT__DEFAULT_APPLICATION__SECRET: "${EMQX_DEFAULT_APPLICATION_SECRET}"
+      EMQX_MANAGEMENT__DEFAULT_APPLICATION__SECRET: "${EMQX_DEFAULT_APPLICATION_SECRET}" #si
 
-      EMQX_ALLOW_ANONYMOUS: "false"
+      EMQX_ALLOW_ANONYMOUS: "false"   #si
       EMQX_NOMATCH: "deny"
 
       # MONGO CONNECTION
-      EMQX_AUTH__MONGO__TYPE: single
-      EMQX_AUTH__MONGO__TOPOLOGY__POOL_SIZE: 1
-      EMQX_AUTH__MONGO__TOPOLOGY__MAX_OVERFLOW: 0
+      EMQX_AUTH__MONGO__TYPE: single #si
+      EMQX_AUTH__MONGO__TOPOLOGY__POOL_SIZE: 1 #si
+      EMQX_AUTH__MONGO__TOPOLOGY__MAX_OVERFLOW: 0 #si
 
-      EMQX_AUTH__MONGO__SERVER: "mongo:${MONGO_EXT_PORT}"
-      EMQX_AUTH__MONGO__POOL: 8
+      EMQX_AUTH__MONGO__SERVER: "mongo:${MONGO_EXT_PORT}" #si
+      EMQX_AUTH__MONGO__POOL: 8 #si
 
-      EMQX_AUTH__MONGO__LOGIN: "${MONGO_USERNAME}"
-      EMQX_AUTH__MONGO__PASSWORD: "${MONGO_PASSWORD}"
-      EMQX_AUTH__MONGO__AUTH_SOURCE: admin
+      EMQX_AUTH__MONGO__LOGIN: "${MONGO_USERNAME}" #si
+      EMQX_AUTH__MONGO__PASSWORD: "${MONGO_PASSWORD}" #si
+      EMQX_AUTH__MONGO__AUTH_SOURCE: admin  #si
 
-      EMQX_AUTH__MONGO__DATABASE: "ioticos_god_level"
-      EMQX_AUTH__MONGO__AUTH_QUERY__COLLECTION: "emqxauthrules"
+      EMQX_AUTH__MONGO__DATABASE: "ioticos_god_level"  #si
+      EMQX_AUTH__MONGO__AUTH_QUERY__COLLECTION: "emqxauthrules" #si
 
-      EMQX_AUTH__MONGO__SUPER_QUERY__COLLECTION: "emqxauthrules"
-      EMQX_AUTH__MONGO__SUPER_QUERY__SUPER_FIELD: "is_superuser"
-      EMQX_AUTH__MONGO__SUPER_QUERY__SELECTOR: "username=%u"
+      EMQX_AUTH__MONGO__SUPER_QUERY__COLLECTION: "emqxauthrules"   #si
+      EMQX_AUTH__MONGO__SUPER_QUERY__SUPER_FIELD: "is_superuser" #si
+      EMQX_AUTH__MONGO__SUPER_QUERY__SELECTOR: "username=%u" #si
       EMQX_AUTH__MONGO__SUPER_QUERY: "off"
 
-      EMQX_AUTH__MONGO__AUTH_QUERY__PASSWORD_HASH: plain
-      EMQX_AUTH__MONGO__AUTH_QUERY__PASSWORD_FIELD: "password"
-      EMQX_AUTH__MONGO__AUTH_QUERY__SELECTOR: "username=%u"
+      EMQX_AUTH__MONGO__AUTH_QUERY__PASSWORD_HASH: plain  #si
+      EMQX_AUTH__MONGO__AUTH_QUERY__PASSWORD_FIELD: "password" #si
+      EMQX_AUTH__MONGO__AUTH_QUERY__SELECTOR: "username=%u" #si
 
       ## Enable ACL query.
       #Access control list
       EMQX_AUTH__MONGO__ACL_QUERY: "on"
-      EMQX_AUTH__MONGO__ACL_QUERY__COLLECTION: "emqxauthrules"
-      EMQX_AUTH__MONGO__ACL_QUERY__SELECTOR: "username=%u"
+      EMQX_AUTH__MONGO__ACL_QUERY__COLLECTION: "emqxauthrules" #si
+      EMQX_AUTH__MONGO__ACL_QUERY__SELECTOR: "username=%u"  #si
 
-      EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_auth_mongo"
+      EMQX_LOADED_PLUGINS: "emqx_recon,emqx_retainer,emqx_management,emqx_dashboard,emqx_auth_mongo" #si
 
-      EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
+      EMQX_LISTENER__TCP__EXTERNAL__MAX_CONNECTIONS: 1000 #si
